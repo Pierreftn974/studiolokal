@@ -23,10 +23,20 @@ if (contactForm) {
         e.preventDefault();
         
         // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
+        const nameEl = document.getElementById('name');
+        const emailEl = document.getElementById('email');
+        const subjectEl = document.getElementById('subject');
+        const messageEl = document.getElementById('message');
+        
+        if (!nameEl || !emailEl || !subjectEl || !messageEl) {
+            console.error('Form elements not found');
+            return;
+        }
+        
+        const name = nameEl.value;
+        const email = emailEl.value;
+        const subject = subjectEl.value;
+        const message = messageEl.value;
         
         // For now, just log the form data and show an alert
         // In production, this would send to a server/email service
@@ -58,7 +68,7 @@ const navbar = document.querySelector('.navbar');
 
 if (navbar) {
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+        const currentScroll = window.scrollY;
         
         if (currentScroll > 100) {
             navbar.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)';
@@ -66,4 +76,10 @@ if (navbar) {
             navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
         }
     });
+}
+
+// Set current year in footer
+const yearElement = document.getElementById('year');
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
 }
